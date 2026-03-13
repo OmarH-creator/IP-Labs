@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="Calculator.css">
+</head>
+<body>
+
+  <div class="calc">
+    <input id="screen" type="text" value="0" readonly>
+
+    <div class="keys">
+      <button class="btn gray" onclick="clearScreen()">AC</button>
+      <button class="btn gray" onclick="Delete()">Delete</button>
+      <button class="btn gray" onclick="percent('%')">%</button>
+      <button class="btn orange" onclick="press('/')">÷</button>
+
+      <button class="btn dark" onclick="press('7')">7</button>
+      <button class="btn dark" onclick="press('8')">8</button>
+      <button class="btn dark" onclick="press('9')">9</button>
+      <button class="btn orange" onclick="press('*')">×</button>
+
+      <button class="btn dark" onclick="press('4')">4</button>
+      <button class="btn dark" onclick="press('5')">5</button>
+      <button class="btn dark" onclick="press('6')">6</button>
+      <button class="btn orange" onclick="press('-')">−</button>
+
+      <button class="btn dark" onclick="press('1')">1</button>
+      <button class="btn dark" onclick="press('2')">2</button>
+      <button class="btn dark" onclick="press('3')">3</button>
+      <button class="btn orange" onclick="press('+')">+</button>
+
+      <button class="btn dark zero" onclick="press('0')">0</button>
+      <button class="btn dark" onclick="press('.')">.</button>
+      <button class="btn orange" onclick="calc()">=</button>
+    </div>
+  </div>
+
+  <script src="calculator.js"></script>
+</body>
+</html>
