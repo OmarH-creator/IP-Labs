@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Movies Watch List</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!--///////////////////////////////////////////////////////////////////////////////////////////////////S -->
+  <script type="text/babel">
+
+    const { useState } = React;
+
+    function App() {
+      const [movieName, setMovieName] = useState("");
+      const [comment, setComment] = useState("");
+      const [stars, setStars] = useState("1");
+      const [movies, setMovies] = useState([]);
+
+      function addMovie() {
+        if (movieName === "") return;
+
+        const newMovie = {
+          name: movieName,
+          comment: comment,
+          stars: stars
+        };
+
+        setMovies([...movies, newMovie]);
+        setMovieName("");
+        setComment("");
+        setStars("1");
+      }
+
+      function removeMovie(index) {
+        const newMovies = movies.filter((movie, i) => i !== index);
+        setMovies(newMovies);
+      }
+
+      return (
+        <div>
+          <h1>Movies Watch List</h1>
+
+          <input
+            type="text"
+            placeholder="movie name"
+            value={movieName}
+            onChange={(e) => setMovieName(e.target.value)}
+          />
+
+          <br /><br />
+
+          <input
+            type="text"
+            placeholder="comment"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+
+          <br /><br />
+
+          <select value={stars} onChange={(e) => setStars(e.target.value)}>
+            <option value="1">1 star</option>
+            <option value="2">2 stars</option>
+            <option value="3">3 stars</option>
+            <option value="4">4 stars</option>
+            <option value="5">5 stars</option>
+          </select>
+
+          <br /><br />
+
+          <button onClick={addMovie}>add movie</button>
+
+          <hr />
+
+          <ul>
+            {movies.map((movie, index) => (
+              <li key={index}>
+                <p><b>Movie:</b> {movie.name}</p>
+                <p><b>Comment:</b> {movie.comment}</p>
+                <p><b>Stars:</b> {movie.stars}</p>
+                <p><b>Emoji rating:</b> {"⭐".repeat(Number(movie.stars))}</p>
+                <button onClick={() => removeMovie(index)}>remove</button>
+                <hr />
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>
